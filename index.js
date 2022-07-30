@@ -51,6 +51,7 @@ io.on("connection", (socket) => {
                 return
             }
             socket.emit("succesfully_joined")
+            io.to(roomName).emit("user_joined", { roomName, userName })
             socket.join(roomName)
             joinRoom(roomName, socket.id, userName)
             addUser(socket.id, userName)
